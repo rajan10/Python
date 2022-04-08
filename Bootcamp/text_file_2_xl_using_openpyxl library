@@ -1,0 +1,16 @@
+import csv
+import openpyxl
+
+input_file = r'C:\Users\RG\rajan\full_city_list.txt'
+output_file = r'C:\Users\RG\rajan\full_city_list.xls'
+
+wb = openpyxl.Workbook()
+ws = wb.worksheets[0]
+
+#context manager in python, it handles both __entry__ and __exit__ magic methods
+with open(input_file, 'r') as data:
+    reader = csv.reader(data, delimiter=';') #https://docs.python.org/3/library/csv.html
+    for row in reader:
+        ws.append(row)
+        
+wb.save(output_file)
